@@ -9,46 +9,46 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Restlessness",
+    title: "चञ्चलता",
     icon: "🌊",
     description:
-      "The mind may feel agitated, jumping from thought to thought like a waterfall crashing over rocks. This is not a sign of failure — it is often the first time you truly see how busy the mind has always been. The restlessness was always there; now you are simply aware of it.",
+      "मन अस्थिर हुन सक्छ, विचारबाट विचारतर्फ उफ्रिँदै गरेको झरनाजस्तै। यो असफलताको चिन्ह होइन — बरु पहिलो पटक तपाईंले मन कति व्यस्त रहँदै आएको थियो भन्ने स्पष्ट देख्नुभएको हो। चञ्चलता सधैं त्यहीं थियो; अब मात्र तपाईं त्यसप्रति सचेत हुनुभएको हो।",
   },
   {
-    title: "Bliss",
+    title: "आनन्द",
     icon: "✦",
     description:
-      "Waves of warmth, pleasure, or deep contentment may wash through the body and mind. This can feel extraordinary, even intoxicating. In the Dzogchen tradition, bliss is recognized as a nyam — a temporary meditation experience. It arises naturally as the body relaxes and the mind settles. Enjoy it, but do not chase it.",
+      "शरीर र मनमा न्यानोपन, सुख वा गहिरो सन्तुष्टिको तरङ्गहरू उठ्न सक्छन्। यो अनुभव कहिलेकाहीँ अत्यन्त सुखद र मोहक लाग्न सक्छ। जोगचेन परम्परामा यसलाई ‘न्याम’ भनिन्छ — ध्यानका अस्थायी अनुभवहरू। शरीर शिथिल हुँदै र मन स्थिर हुँदै जाँदा यो स्वाभाविक रूपमा उत्पन्न हुन्छ। यसको आनन्द लिनुहोस्, तर यसको पछि नलाग्नुहोस्।",
   },
   {
-    title: "Clarity",
+    title: "स्पष्टता",
     icon: "◇",
     description:
-      "Perception may become vivid and sharp — colors brighter, sounds crisper, thoughts transparent. The mind feels luminous, almost crystalline. This heightened clarity is another nyam. It shows the mind's natural capacity when freed from its usual dullness. But grasping at clarity creates a subtle tension that can block deeper realization.",
+      "अनुभूति असाधारण रूपमा स्पष्ट हुन सक्छ — रंगहरू उज्याला, आवाजहरू तीक्ष्ण, विचारहरू पारदर्शी। मन उज्यालो र पारदर्शी अनुभव हुन सक्छ। यस्तो स्पष्टता पनि अर्को ‘न्याम’ हो। यसले मनको स्वाभाविक क्षमता देखाउँछ जब त्यो सामान्य मन्दताबाट मुक्त हुन्छ। तर यस स्पष्टतामा आसक्ति राख्दा सूक्ष्म तनाव पैदा हुन सक्छ।",
   },
   {
-    title: "Boredom",
+    title: "दिक्क",
     icon: "○",
     description:
-      "A flat, grey feeling that nothing is happening. The mind craves stimulation and finds sitting still pointless. Boredom is actually a powerful teacher — it reveals the mind's addiction to entertainment. If you can sit with boredom without acting on it, you discover a spaciousness beneath it that is profoundly restful.",
+      "कहिलेकाहीँ केही भइरहेको छैन जस्तो लाग्न सक्छ — एउटा फिका, नीरस अनुभव। मनले उत्तेजना खोज्छ र चुपचाप बस्नुलाई निरर्थक ठान्छ। तर दिक्क वास्तवमा शक्तिशाली शिक्षक हो। यसले मनोरञ्जनप्रतिको मनको आसक्ति देखाउँछ। यदि तपाईं दिक्कसँगै बस्न सक्नुभयो भने, त्यसको तल गहिरो विश्रामको खुला ठाउँ पाउनुहुनेछ।",
   },
   {
-    title: "Visions",
+    title: "दृश्यहरू",
     icon: "◈",
     description:
-      "Lights, colors, images, or symbolic scenes may appear — sometimes beautiful, sometimes strange. In some traditions, these are given great significance. In Dzogchen, they are treated like any other thought: natural displays of the mind's creative energy. They are neither to be feared nor pursued. Let them arise and dissolve on their own.",
+      "प्रकाश, रंग, आकृतिहरू वा प्रतीकात्मक दृश्यहरू देखिन सक्छन् — कहिलेकाहीँ सुन्दर, कहिलेकाहीँ अनौठा। केही परम्पराहरूमा यसलाई ठूलो महत्व दिइन्छ। तर जोगचेनमा यीलाई अन्य विचारजस्तै हेरिन्छ — मनको सृजनात्मक उर्जाको स्वाभाविक प्रदर्शन। यसलाई न डराउनुहोस्, न पछ्याउनुहोस्। उठ्न दिनुहोस् र आफैं विलीन हुन दिनुहोस्।",
   },
   {
-    title: "Drowsiness",
+    title: "निद्रालुता",
     icon: "☾",
     description:
-      "The body may feel heavy, the mind foggy. You may find yourself nodding off or losing awareness entirely. This is the mind's habitual response when it is not being stimulated — it either thinks or sleeps. Drowsiness will pass as your capacity for alert relaxation develops over time.",
+      "शरीर भारी र मन धुम्म हुन सक्छ। कहिलेकाहीँ टाउको निहुरिन सक्छ वा सचेतना हराउन सक्छ। यो मनको पुरानो बानी हो — उत्तेजना नभएपछि या त सोच्ने या सुत्ने। अभ्याससँगै सतर्क विश्रामको क्षमता बढ्दै जाँदा यो अवस्था पनि बिस्तारै घट्दै जान्छ।",
   },
   {
-    title: "Emotional Release",
+    title: "भावनात्मक मुक्तता",
     icon: "💧",
     description:
-      "Old emotions — grief, anger, fear, tenderness — may surface without any obvious cause. As the mind quiets, stored tensions in the body begin to unwind. These releases are a natural part of purification. Let the emotions move through you like weather passing through a valley. You are the valley, not the storm.",
+      "पुराना भावनाहरू — शोक, क्रोध, डर वा कोमलता — कहिलेकाहीँ स्पष्ट कारण बिना पनि उठ्न सक्छन्। मन शान्त हुँदै जाँदा शरीरमा संचित तनावहरू खुल्न थाल्छन्। यी मुक्तताहरू शुद्धिकरणको स्वाभाविक भाग हुन्। भावनाहरूलाई उपत्यकाबाट गुज्रिने मौसमझैँ आउन र जान दिनुहोस्। तपाईं उपत्यका हुनुहुन्छ, आँधी होइन।",
   },
 ];
 
@@ -66,9 +66,10 @@ export default function Experiences() {
           >
             <ArrowLeft className="w-4 h-4 text-foreground" />
           </button>
+
           <div className="flex-1 min-w-0">
             <h1 className="font-display text-lg font-semibold text-foreground">
-              What Happens in Meditation
+              ध्यानमा के हुन्छ
             </h1>
           </div>
         </div>
@@ -78,10 +79,13 @@ export default function Experiences() {
         {/* Intro */}
         <div className="animate-fade-up text-center space-y-3">
           <p className="font-display text-2xl text-gold italic">
-            "These are normal experiences — don't cling to them."
+            "यी सबै सामान्य अनुभवहरू हुन् — तिनमा आसक्ति नराख्नुहोस्।"
           </p>
+
           <p className="font-body text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
-            As your practice deepens, you will encounter many different states of mind and body. In the Dzogchen tradition, these are called <span className="text-gold italic">nyam</span> — temporary meditation experiences that are signs of progress, not destinations.
+            अभ्यास गहिरो हुँदै जाँदा मन र शरीरमा विभिन्न अनुभवहरू देखा पर्न सक्छन्।
+            जोगचेन परम्परामा यिनलाई <span className="text-gold italic">न्याम</span> भनिन्छ —
+            प्रगतिका संकेत हुने अस्थायी ध्यान अनुभवहरू, अन्तिम गन्तव्य होइनन्।
           </p>
         </div>
 
@@ -97,10 +101,12 @@ export default function Experiences() {
                 <span className="text-xl w-8 text-center" aria-hidden="true">
                   {exp.icon}
                 </span>
+
                 <h2 className="font-display text-xl font-semibold text-foreground">
                   {exp.title}
                 </h2>
               </div>
+
               <p className="font-body text-[15px] text-foreground/80 leading-relaxed pl-11">
                 {exp.description}
               </p>
@@ -111,11 +117,15 @@ export default function Experiences() {
         {/* Closing wisdom */}
         <div className="animate-fade-up text-center pt-4 pb-8 space-y-4">
           <div className="w-12 h-px bg-gold/40 mx-auto" />
+
           <p className="font-display text-lg text-muted-foreground italic leading-relaxed max-w-sm mx-auto">
-            Whatever arises, let it arise. Whatever stays, let it stay. Whatever goes, let it go. The awareness that witnesses all of this is your true nature.
+            जे उठ्छ, उठ्न दिनुहोस्। जे रहन्छ, रहन दिनुहोस्।
+            जे जान्छ, जान दिनुहोस्।
+            यी सबैलाई देख्ने सचेतना नै तपाईंको वास्तविक स्वभाव हो।
           </p>
+
           <p className="text-xs text-muted-foreground font-body">
-            — Dzogchen instruction
+            — जोगचेन उपदेश
           </p>
         </div>
       </div>
