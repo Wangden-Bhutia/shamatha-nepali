@@ -101,6 +101,7 @@ export default function TimerControls({
         )}
 
       </div>
+
     </div>
   );
 }
