@@ -36,7 +36,6 @@ export default function ModuleDetail() {
 
   const isSessionActive = timer.isRunning || timer.isPaused;
 
-  // Trigger guided audio ticks
   useEffect(() => {
     if (timer.isRunning && !timer.isPaused && timer.elapsedSeconds !== prevElapsedRef.current) {
       prevElapsedRef.current = timer.elapsedSeconds;
@@ -44,7 +43,6 @@ export default function ModuleDetail() {
     }
   }, [timer.elapsedSeconds, timer.isRunning, timer.isPaused, guidedAudio]);
 
-  // Handle session completion
   useEffect(() => {
     if (timer.isComplete && !completedRef.current && module) {
       completedRef.current = true;
@@ -53,7 +51,6 @@ export default function ModuleDetail() {
       guidedAudio.stopSession();
       timer.stop();
 
-      // Subtle vibration
       if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
@@ -65,7 +62,6 @@ export default function ModuleDetail() {
     }
   }, [timer.isComplete]);
 
-  // Prevent back navigation during session
   useEffect(() => {
     if (!isSessionActive) return;
 
@@ -118,12 +114,11 @@ export default function ModuleDetail() {
   if (!module) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-muted-foreground">Module not found.</p>
+        <p className="text-muted-foreground">मोड्युल फेला परेन।</p>
       </div>
     );
   }
 
-  // Completion screen
   if (showCompletion) {
     return (
       <SessionComplete
@@ -139,17 +134,15 @@ export default function ModuleDetail() {
   const totalScreens = screens ? screens.length : 0;
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "learn", label: "Learn" },
-    { key: "meditate", label: "Meditate" },
-    { key: "timer", label: "Timer" },
+    { key: "learn", label: "सिक्नुहोस्" },
+    { key: "meditate", label: "ध्यान गर्नुहोस्" },
+    { key: "timer", label: "समयमापक" },
   ];
 
-  // Minimal meditation mode — hide header/tabs when session active
   const inMeditationMode = isSessionActive && activeTab === "timer";
 
   return (
     <div className={`min-h-screen bg-background ${inMeditationMode ? "flex flex-col" : ""}`}>
-      {/* Header — hidden during meditation */}
       {!inMeditationMode && (
         <div className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
           <div className="max-w-lg mx-auto flex items-center gap-3 px-4 py-3">
@@ -161,7 +154,7 @@ export default function ModuleDetail() {
             </button>
             <div className="flex-1 min-w-0">
               <p className="text-xs text-muted-foreground font-body tracking-wider uppercase">
-                Stage {module.id}
+                चरण {module.id}
               </p>
               <h1 className="font-display text-lg font-semibold text-foreground truncate">
                 {module.title}
@@ -169,7 +162,6 @@ export default function ModuleDetail() {
             </div>
           </div>
 
-          {/* Tabs */}
           <div className="max-w-lg mx-auto flex border-b border-border">
             {tabs.map((tab) => (
               <button
@@ -191,7 +183,6 @@ export default function ModuleDetail() {
         </div>
       )}
 
-      {/* Content */}
       <div className={`max-w-lg mx-auto px-4 ${inMeditationMode ? "flex-1 flex flex-col items-center justify-center" : "py-8"}`}>
         {activeTab === "learn" && (
           <div className="animate-fade-up space-y-6">
@@ -227,11 +218,13 @@ export default function ModuleDetail() {
                     className="rounded-full border-border"
                   >
                     <ChevronLeft className="w-4 h-4 mr-1" />
-                    Back
+                    पछाडि
                   </Button>
+
                   <span className="text-xs text-muted-foreground font-body">
-                    {learnPage + 1} of {totalScreens}
+                    {learnPage + 1} / {totalScreens}
                   </span>
+
                   <Button
                     variant="outline"
                     size="sm"
@@ -239,7 +232,7 @@ export default function ModuleDetail() {
                     disabled={learnPage === totalScreens - 1}
                     className="rounded-full border-border"
                   >
-                    Next
+                    अगाडि
                     <ChevronRight className="w-4 h-4 ml-1" />
                   </Button>
                 </div>
@@ -253,7 +246,7 @@ export default function ModuleDetail() {
             {progress.sessionsCompleted > 0 && (
               <div className="rounded-lg bg-secondary/50 border border-border p-4">
                 <p className="text-sm text-muted-foreground font-body">
-                  You've practiced this {progress.sessionsCompleted} time{progress.sessionsCompleted !== 1 ? "s" : ""} for a total of {progress.totalMinutesMeditated} minutes.
+                  तपाईंले यो अभ्यास {progress.sessionsCompleted} पटक गर्नुभएको छ, कुल {progress.totalMinutesMeditated} मिनेट।
                 </p>
               </div>
             )}
@@ -263,8 +256,9 @@ export default function ModuleDetail() {
         {activeTab === "meditate" && (
           <div className="animate-fade-up space-y-6">
             <h2 className="font-display text-xl text-gold text-center mb-8">
-              Guided Meditation
+              निर्देशित ध्यान
             </h2>
+
             <ol className="space-y-5">
               {module.guidedMeditation.map((step, i) => (
                 <li key={i} className="flex gap-4">
@@ -301,40 +295,40 @@ export default function ModuleDetail() {
               onToggleGuided={setGuidedEnabled}
             />
 
-            {/* Recommended duration hint — only when idle */}
             {!timer.isRunning && !timer.isPaused && (
               <p className="text-center text-xs text-muted-foreground font-body">
-                Recommended for Stage {module.id}: {module.defaultDuration} min
+                चरण {module.id} को लागि सुझाव गरिएको समय: {module.defaultDuration} मिनेट
               </p>
             )}
           </div>
         )}
       </div>
 
-      {/* Exit confirmation dialog */}
       <Dialog open={showExitDialog} onOpenChange={setShowExitDialog}>
         <DialogContent className="max-w-xs rounded-xl">
           <DialogHeader>
             <DialogTitle className="font-display text-lg text-center">
-              End meditation session?
+              ध्यान सत्र समाप्त गर्ने?
             </DialogTitle>
             <DialogDescription className="text-center text-sm text-muted-foreground">
-              Your current session will not be saved.
+              हालको सत्र सुरक्षित हुने छैन।
             </DialogDescription>
           </DialogHeader>
+
           <div className="flex flex-col gap-2 pt-2">
             <Button
               onClick={() => setShowExitDialog(false)}
               className="rounded-full bg-gold text-primary-foreground hover:bg-gold-soft font-body tracking-wider uppercase text-sm"
             >
-              Continue Meditation
+              ध्यान जारी राख्नुहोस्
             </Button>
+
             <Button
               onClick={handleExitConfirm}
               variant="outline"
               className="rounded-full border-border font-body tracking-wider uppercase text-sm"
             >
-              End Session
+              सत्र समाप्त गर्नुहोस्
             </Button>
           </div>
         </DialogContent>
