@@ -19,15 +19,12 @@ import {
 type Tab = "learn" | "meditate" | "timer";
 
 const bell = new Audio("/sounds/bell.mp3");
-
 bell.preload = "auto";
 bell.volume = 0.9;
 
 const playBell = () => {
-  try {
     bell.currentTime = 0;
-    bell.play();
-  } catch {}
+    bell.play().catch(() => {});
 };
 export default function ModuleDetail() {
 
