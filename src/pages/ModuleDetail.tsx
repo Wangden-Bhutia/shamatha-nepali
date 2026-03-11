@@ -1,4 +1,4 @@
- import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { modules } from "@/data/modules";
 import { useProgress } from "@/hooks/useProgress";
 import { useMeditationTimer } from "@/hooks/useMeditationTimer";
@@ -23,9 +23,10 @@ bell.preload = "auto";
 bell.volume = 0.9;
 
 const playBell = () => {
-    bell.currentTime = 0;
-    bell.play().catch(() => {});
+  bell.currentTime = 0;
+  bell.play().catch(() => {});
 };
+
 export default function ModuleDetail() {
 
   const { id } = useParams<{ id: string }>();
@@ -42,7 +43,9 @@ export default function ModuleDetail() {
   const timer = useMeditationTimer(module?.defaultDuration ?? 10);
 
   const completedRef = useRef(false);
- const warningBellRef = useRef(false);
+  const wakeLockRef = useRef<any>(null);
+  const warningBellRef = useRef(false);
+
   const isSessionActive = timer.isRunning || timer.isPaused;
 
   useEffect(() => {
@@ -57,6 +60,11 @@ export default function ModuleDetail() {
 
       timer.stop();
 
+      if (wakeLockRef.current) {
+        wakeLockRef.current.release();
+        wakeLockRef.current = null;
+      }
+
       if (navigator.vibrate) {
         navigator.vibrate([100, 50, 100]);
       }
@@ -69,20 +77,22 @@ export default function ModuleDetail() {
       completedRef.current = false;
     }
 
-  }, [timer.isComplete, module, timer.duration, completeSession]);
- useEffect(() => {
+  }, [timer.isComplete]);
 
-  if (!timer.isRunning) {
-    warningBellRef.current = false;
-    return;
-  }
+  useEffect(() => {
 
-  if (timer.secondsRemaining === 5 && !warningBellRef.current) {
-    warningBellRef.current = true;
-    playBell();
-  }
+    if (!timer.isRunning && !timer.isPaused) {
+      warningBellRef.current = false;
+      return;
+    }
 
-}, [timer.secondsRemaining, timer.isRunning]);
+    if (timer.secondsRemaining === 5 && !warningBellRef.current) {
+      warningBellRef.current = true;
+      playBell();
+    }
+
+  }, [timer.secondsRemaining, timer.isRunning, timer.isPaused]);
+
   useEffect(() => {
 
     if (!isSessionActive) return;
@@ -100,18 +110,37 @@ export default function ModuleDetail() {
 
   }, [isSessionActive]);
 
-  const handleStart = () => {
+  const handleStart = async () => {
 
-  playBell(); // bell immediately
+    try {
+      if ('wakeLock' in navigator) {
+        wakeLockRef.current = await (navigator as any).wakeLock.request('screen');
+      }
+    } catch (err) {
+      console.log("Wake lock error:", err);
+    }
 
-  setTimeout(() => {
+    playBell();
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
     timer.start();
-  }, 3000); // 3 second settling
 
-};
+  };
+
   const handlePause = () => timer.pause();
   const handleResume = () => timer.resume();
-  const handleStop = () => timer.stop();
+
+  const handleStop = () => {
+
+    if (wakeLockRef.current) {
+      wakeLockRef.current.release();
+      wakeLockRef.current = null;
+    }
+
+    timer.stop();
+
+  };
 
   const handleExitConfirm = () => {
 
@@ -149,7 +178,6 @@ export default function ModuleDetail() {
     );
   }
 
-  const progress = getModuleProgress(module.id);
   const screens = module.learnScreens;
   const totalScreens = screens ? screens.length : 0;
 
@@ -224,52 +252,50 @@ export default function ModuleDetail() {
 
       <div className={`max-w-lg mx-auto px-4 ${inMeditationMode ? "flex-1 flex flex-col items-center justify-center" : "py-8"}`}>
 
-        {activeTab === "learn" && (
+        {activeTab === "learn" && screens && totalScreens > 0 && (
+
           <div className="space-y-6">
 
-            {screens && totalScreens > 0 && (
-              <>
-                <div className="rounded-xl bg-card border border-border p-6">
+            <div className="rounded-xl bg-card border border-border p-6">
 
-                  <h2 className="font-display text-xl text-gold mb-4">
-                    {screens[learnPage].title}
-                  </h2>
+              <h2 className="font-display text-xl text-gold mb-4">
+                {screens[learnPage].title}
+              </h2>
 
-                  <p className="font-body text-foreground/90 leading-relaxed text-[15px]">
-                    {screens[learnPage].body}
-                  </p>
+              <p className="font-body text-foreground/90 leading-relaxed text-[15px]">
+                {screens[learnPage].body}
+              </p>
 
-                </div>
+            </div>
 
-                <div className="flex justify-between">
+            <div className="flex justify-between">
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setLearnPage((p) => Math.max(0, p - 1))}
-                    disabled={learnPage === 0}
-                  >
-                    <ChevronLeft className="w-4 h-4 mr-1" />
-                    पछाडि
-                  </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setLearnPage((p) => Math.max(0, p - 1))}
+                disabled={learnPage === 0}
+              >
+                <ChevronLeft className="w-4 h-4 mr-1" />
+                पछाडि
+              </Button>
 
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
-                      setLearnPage((p) => Math.min(totalScreens - 1, p + 1))
-                    }
-                    disabled={learnPage === totalScreens - 1}
-                  >
-                    अगाडि
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setLearnPage((p) => Math.min(totalScreens - 1, p + 1))
+                }
+                disabled={learnPage === totalScreens - 1}
+              >
+                अगाडि
+                <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
 
-                </div>
-              </>
-            )}
+            </div>
 
           </div>
+
         )}
 
         {activeTab === "meditate" && (
