@@ -18,312 +18,348 @@ export interface MeditationModule {
 }
 
 export const levels: { key: Level; label: string; description: string }[] = [
-  { key: "beginner", label: "Beginner", description: "Building the foundation of attention" },
-  { key: "intermediate", label: "Intermediate", description: "Deepening stability and clarity" },
-  { key: "advanced", label: "Advanced", description: "Resting in effortless awareness" },
+  { key: "beginner", label: "प्रारम्भिक", description: "ध्यानको आधार निर्माण" },
+  { key: "intermediate", label: "मध्यम", description: "स्थिरता र स्पष्टता गहिरो बनाउँदै" },
+  { key: "advanced", label: "उन्नत", description: "सहज सचेतनामा विश्राम" },
 ];
 
 export const modules: MeditationModule[] = [
+
   // ─── BEGINNER ───────────────────────────────────────────
   {
     id: 1,
-    title: "Placing the Mind",
-    subtitle: "Learning to rest attention on the breath",
+    title: "मन राख्ने अभ्यास",
+    subtitle: "सासमा ध्यान राख्न सिक्दै",
     icon: "Wind",
     level: "beginner",
     explanation:
-      "The practitioner begins learning to place attention on the breath. The mind wanders frequently and distractions are common.",
+      "साधकले सासमा ध्यान राख्न सिक्न सुरु गर्छ। मन बारम्बार भट्किन्छ र विचलनहरू सामान्य हुन्छन्।",
+
     learnScreens: [
       {
-        title: "Starting the Journey",
-        body: "Meditation begins with one simple task: placing your attention on the breath. This sounds easy but you will quickly discover how restless the mind is. Within seconds your attention will drift to thoughts, memories or plans. This is completely normal. Every meditator experiences this at the beginning. The practice is not about being perfectly focused. It is about noticing when your mind has wandered and gently bringing it back to the breath, again and again.",
+        title: "यात्राको सुरुवात",
+        body: "ध्यान एउटा सरल कार्यबाट सुरु हुन्छ: सासमा ध्यान राख्ने। यो सजिलो लाग्न सक्छ, तर चाँडै नै मन कति चञ्चल छ भन्ने थाहा हुन्छ। केही क्षणमै ध्यान विचार, सम्झना वा योजनातर्फ जान्छ। यो पूर्ण रूपमा सामान्य हो। सबै साधकहरूले सुरुमा यही अनुभव गर्छन्। अभ्यासको उद्देश्य पूर्ण रूपमा एकाग्र हुनु होइन। मन भट्किएको थाहा पाउनु र फेरि सासतर्फ ध्यान फिर्ता ल्याउनु नै अभ्यास हो।",
       },
       {
-        title: "Why the Breath?",
-        body: "The breath is always available and always happening. It gives the mind a simple, natural anchor. You don't need to breathe in any special way — just notice the sensation of air flowing in and out. The breath is neutral enough that it doesn't excite or bore the mind. It simply gives your attention somewhere to rest. Over time this gentle resting trains the mind to become steadier and calmer.",
+        title: "किन सास?",
+        body: "सास सधैं उपलब्ध हुन्छ र सधैं भइरहेको हुन्छ। यसले मनलाई एक सरल र प्राकृतिक आधार दिन्छ। सासलाई कुनै विशेष तरिकाले लिन आवश्यक छैन — केवल सास भित्र-बाहिर जाँदा हुने अनुभूति ध्यान दिनुहोस्। सास न त धेरै उत्तेजक हुन्छ न त बोरिंग। यसले ध्यानलाई विश्राम गर्ने ठाउँ दिन्छ। समयसँगै यो सौम्य अभ्यासले मनलाई स्थिर र शान्त बनाउँछ।",
       },
       {
-        title: "The Wandering Mind",
-        body: "At this stage your mind will wander constantly. You might stay with the breath for only a few seconds before drifting into thought. Don't be discouraged — this is exactly how it works for everyone. Each time you notice you've wandered and bring attention back, you are strengthening your ability to be present. That moment of noticing is the most important part of the practice. Be patient and kind with yourself.",
+        title: "भट्किने मन",
+        body: "यस चरणमा मन बारम्बार भट्किन्छ। सासमा ध्यान राखेको केही सेकेन्डमै मन विचारतर्फ जान सक्छ। निराश नहुनुहोस् — सबैको लागि यस्तो नै हुन्छ। हरेक पटक भट्किएको थाहा पाएर ध्यान सासतर्फ फर्काउनु नै अभ्यास हो। त्यो थाहा पाउने क्षण नै अभ्यासको सबैभन्दा महत्वपूर्ण भाग हो। आफूसँग धैर्य र दयालु रहनुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Find a comfortable seat — on a cushion, chair, or anywhere you can sit upright without strain. Let your hands rest naturally on your knees or in your lap.",
-      "Gently close your eyes or soften your gaze downward. Take three slow, deep breaths to let your body settle.",
-      "Now allow your breathing to return to its natural rhythm. There is no need to control it.",
-      "Bring your attention to the sensation of breath at your nostrils. Notice the cool air flowing in and the warm air flowing out.",
-      "After a short while you will notice your mind has wandered. This is completely normal. Simply notice that you drifted and gently bring your attention back to the breath.",
-      "Each time you notice and return is a moment of practice. Don't judge yourself — just come back gently.",
-      "Continue resting with the breath for the remainder of your session. When thoughts come, let them pass. When you drift, return gently.",
+      "आरामदायी रूपमा बस्नुहोस् — कुशन, कुर्सी वा जहाँ शरीर सहज रूपमा सीधा राख्न सकिन्छ। हात घुँडामा वा काखमा स्वाभाविक रूपमा राख्नुहोस्।",
+      "आँखा बिस्तारै बन्द गर्नुहोस् वा दृष्टि तलतिर नरम बनाउनुहोस्। शरीरलाई शान्त पार्न तीन पटक गहिरो सास लिनुहोस्।",
+      "अब सासलाई यसको स्वाभाविक लयमा फर्कन दिनुहोस्। यसलाई नियन्त्रण गर्न आवश्यक छैन।",
+      "नासिकामा सासको अनुभूति ध्यान दिनुहोस्। भित्र आउने चिसो हावा र बाहिर जाने न्यानो हावा अनुभव गर्नुहोस्।",
+      "केही समयपछि तपाईंले मन भट्किएको महसुस गर्नुहुनेछ। यो सामान्य हो। केवल ध्यान दिनुहोस् र फेरि सासतर्फ ध्यान फर्काउनुहोस्।",
+      "हरेक पटक फर्किनु नै अभ्यासको क्षण हो। आफूलाई दोष नदिनुहोस् — केवल सौम्य रूपमा फर्कनुहोस्।",
+      "सत्रको बाँकी समय साससँगै विश्राम गर्नुहोस्। विचार आए भने जान दिनुहोस्, भट्किए फेरि फर्कनुहोस्।",
     ],
+
     defaultDuration: 5,
   },
+
   {
     id: 2,
-    title: "Continuous Placement",
-    subtitle: "Sustaining attention a little longer",
+    title: "लगातार ध्यान",
+    subtitle: "ध्यान अलि बढी समय टिक्दै",
     icon: "Anchor",
     level: "beginner",
     explanation:
-      "Attention stays on the breath for slightly longer periods. Distractions still occur often, but the practitioner notices them more quickly.",
+      "सासमा ध्यान अलि बढी समय टिक्न थाल्छ। विचलन अझै आउँछन्, तर साधकले चाँडै थाहा पाउन थाल्छ।",
+
     learnScreens: [
       {
-        title: "Staying a Little Longer",
-        body: "In this stage you begin to sustain attention on the breath for slightly longer periods. Instead of drifting away after a few seconds, you may stay present for ten or twenty seconds at a time. This is real progress, even if it doesn't feel dramatic. The key is consistency — each time you return your attention, the mind learns to stay a little longer. Don't try to force concentration. Let it develop naturally through gentle repetition.",
+        title: "अलि लामो टिकाइ",
+        body: "यस चरणमा सासमा ध्यान अलि बढी समय टिक्न थाल्छ। केही सेकेन्डपछि तुरुन्त भट्किने भन्दा अब दस वा बीस सेकेन्डसम्म ध्यान रहन सक्छ। यो वास्तविक प्रगति हो। मुख्य कुरा निरन्तर अभ्यास हो। हरेक पटक ध्यान फर्काउँदा मन अलि लामो समय बस्न सिक्छ। एकाग्रता जबरजस्ती गर्न खोज्नु पर्दैन। यसलाई बिस्तारै विकास हुन दिनुहोस्।",
       },
       {
-        title: "Noticing Distractions Faster",
-        body: "As you practice more, you begin to notice distractions sooner. Instead of getting lost in a long chain of thoughts before realizing you've drifted, you catch yourself earlier. This quicker recognition is a sign that your mindfulness is growing stronger. The gap between wandering and noticing gets shorter. Eventually returning to the breath becomes more natural and requires less effort.",
+        title: "विचलन छिटो थाहा पाउने",
+        body: "अभ्यास बढ्दै जाँदा विचलन छिटो थाहा पाउन थाल्नुहुन्छ। पहिले लामो समय विचारमा हराएर पछि मात्र थाहा हुन्थ्यो। अब चाँडै थाहा हुन्छ। यो सचेतना बलियो हुँदै गएको संकेत हो। भट्किने र थाहा पाउने बीचको दूरी छोटो हुँदै जान्छ।",
       },
       {
-        title: "Building a Habit",
-        body: "At this stage the most important thing is regular practice. Even short sessions of five to ten minutes build the habit of attention. Your mind is learning a new skill, and like any skill it improves with repetition. Don't worry about how well you're doing. Simply show up, sit, and practice. The consistency matters more than the quality of any single session. Trust the process.",
+        title: "अभ्यासको बानी",
+        body: "यस चरणमा नियमित अभ्यास सबैभन्दा महत्वपूर्ण हुन्छ। पाँच वा दस मिनेटको छोटो सत्रले पनि ध्यानको बानी बनाउँछ। मनले नयाँ सीप सिकिरहेको छ। कुनै पनि सीप जस्तै यसले पनि दोहोर्याइबाट विकास हुन्छ। कति राम्रो गरियो भन्ने चिन्ता नगर्नुहोस् — बस्नुहोस् र अभ्यास गर्नुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Settle into your seated position. Let your body relax and your shoulders drop.",
-      "Close your eyes gently. Take three deep breaths, then let breathing become natural.",
-      "Place your attention on the breath at the nostrils. Feel each inhale and each exhale.",
-      "Try to stay with the breath continuously. Follow the full length of each in-breath and out-breath.",
-      "When you notice your mind has wandered, recognize it calmly and return to the breath without frustration.",
-      "See if you can stay with two or three breaths in a row before the mind wanders. Don't strain — just gently sustain your attention.",
-      "Continue this gentle practice of staying and returning for the rest of the session.",
+      "आरामदायी रूपमा बस्नुहोस्। शरीरलाई शान्त हुन दिनुहोस्। काँधलाई नरम बनाउनुहोस्।",
+      "आँखा बिस्तारै बन्द गर्नुहोस्। तीन गहिरो सास लिनुहोस् र त्यसपछि सास स्वाभाविक हुन दिनुहोस्।",
+      "नासिकामा सासको अनुभूति ध्यान दिनुहोस्। प्रत्येक सास भित्र र बाहिर जाँदा अनुभव गर्नुहोस्।",
+      "साससँग लगातार रहन प्रयास गर्नुहोस्। प्रत्येक सासको पूरा लम्बाइ ध्यान दिनुहोस्।",
+      "मन भट्किएको थाहा पाउँदा शान्त रूपमा फेरि सासतर्फ फर्कनुहोस्।",
+      "दुई वा तीन साससम्म लगातार ध्यान राख्न सकिन्छ कि हेर्नुहोस्।",
+      "यसरी बस्ने र फर्कने अभ्यास सत्रभरि जारी राख्नुहोस्।",
     ],
+
     defaultDuration: 7,
   },
+
   {
     id: 3,
-    title: "Repeated Placement",
-    subtitle: "Catching distractions as they arise",
+    title: "बारम्बार फर्काउने",
+    subtitle: "विचलनलाई चाँडै चिन्ने",
     icon: "RefreshCw",
     level: "beginner",
     explanation:
-      "The practitioner becomes more aware of distraction as it happens. Each time the mind wanders, it is gently returned to the breath.",
+      "साधकले विचलन उत्पन्न हुने क्षणमै थाहा पाउन थाल्छ। मन भट्किँदा फेरि सासतर्फ फर्काइन्छ।",
+
     learnScreens: [
       {
-        title: "Awareness of Distraction",
-        body: "By this stage you become more aware of the moment distraction happens. You start to notice the mind pulling away from the breath almost as it occurs. This is a significant development. Before, you might have been lost in thought for a long time before noticing. Now the gap is shorter. You are developing a kind of inner watchfulness that operates alongside your attention on the breath.",
+        title: "विचलनको सचेतना",
+        body: "यस चरणमा विचलन उत्पन्न हुने क्षण नै थाहा पाउन थाल्नुहुन्छ। मन सासतर्फबाट हट्न थालेको तुरुन्तै देख्न सकिन्छ। यो महत्वपूर्ण प्रगति हो। अब लामो समय विचारमा हराउनु पर्दैन।",
       },
       {
-        title: "The Rhythm of Return",
-        body: "Practice at this stage develops a natural rhythm: rest on the breath, notice wandering, return gently. This cycle repeats many times in each session. Don't see wandering as failure — it is part of the practice. Each return strengthens your mindfulness. Over time the returns become quicker and smoother. The mind begins to settle more easily because it knows the way back.",
+        title: "फर्किने लय",
+        body: "यस चरणमा अभ्यासको एक स्वाभाविक लय हुन्छ: सासमा विश्राम, भट्किने, थाहा पाउने, र फेरि फर्कने। यो प्रक्रिया धेरै पटक दोहोरिन्छ। भट्किनुलाई असफलता नठान्नुहोस्। हरेक फर्काइले सचेतनालाई बलियो बनाउँछ।",
       },
       {
-        title: "Strengthening Mindfulness",
-        body: "Mindfulness is like a muscle that grows stronger with use. At this stage you are actively building that strength. Your awareness becomes more reliable and more consistent. You may notice that you can sit for longer periods without losing track of the breath entirely. Be encouraged by this progress but don't become attached to it. Simply continue practicing with patience and gentleness.",
+        title: "सचेतना बलियो बनाउँदै",
+        body: "सचेतना पनि मांसपेशी जस्तै हो — प्रयोगले बलियो हुन्छ। यस चरणमा तपाईं त्यो शक्ति विकास गर्दै हुनुहुन्छ। ध्यान अझ स्थिर र विश्वसनीय हुन्छ।",
       },
     ],
+
     guidedMeditation: [
-      "Sit comfortably with your spine upright but relaxed. Let your hands rest naturally.",
-      "Close your eyes and take a few settling breaths. Then let breathing become natural.",
-      "Place attention on the breath. Feel the sensation at the nostrils or the gentle rise and fall of the chest.",
-      "As you sit, notice when the mind begins to wander. Try to catch the distraction early — as it starts, not after you're already lost.",
-      "Each time you notice, gently bring attention back. No frustration, no judgment. Just a calm return.",
-      "Notice the rhythm: resting, wandering, noticing, returning. Let this rhythm become smooth and natural.",
-      "Continue practicing this attentive cycle for the remainder of the session. Let each return be soft and patient.",
+      "आरामदायी रूपमा बस्नुहोस् र मेरुदण्ड सीधा राख्नुहोस्।",
+      "आँखा बन्द गर्नुहोस् र केही सासले शरीरलाई शान्त पार्नुहोस्।",
+      "सासमा ध्यान राख्नुहोस्। नासिका वा छातीको हल्का चाल अनुभव गर्नुहोस्।",
+      "मन भट्किन थालेको क्षण थाहा पाउन प्रयास गर्नुहोस्।",
+      "थाहा पाउने बित्तिकै फेरि सासतर्फ फर्कनुहोस्।",
+      "विश्राम, भट्किने, थाहा पाउने, फर्कने — यो लयलाई स्वाभाविक हुन दिनुहोस्।",
+      "सत्रभरि यस अभ्यासलाई सौम्य रूपमा जारी राख्नुहोस्।",
     ],
+
     defaultDuration: 10,
   },
 
   // ─── INTERMEDIATE ───────────────────────────────────────
+
   {
     id: 4,
-    title: "Close Placement",
-    subtitle: "Attention becomes naturally stable",
+    title: "नजिकको ध्यान",
+    subtitle: "ध्यान स्वाभाविक रूपमा स्थिर हुँदै",
     icon: "Target",
     level: "intermediate",
     explanation:
-      "Attention becomes more stable and distractions weaken. The meditator learns to maintain steady awareness while relaxing the effort.",
+      "ध्यान स्थिर हुन थाल्छ र विचलन कमजोर हुन्छ। साधकले सहज रूपमा ध्यान कायम राख्न सिक्छ।",
+
     learnScreens: [
       {
-        title: "Settling Into Stability",
-        body: "At this stage something shifts. Your attention no longer wanders as frequently or as far. When you place your mind on the breath, it tends to stay there more naturally. Distractions still arise but they have less power to pull you away. You may notice that you can sit through entire stretches of breathing without losing your focus. This is a sign that your practice is maturing and your mind is becoming more settled.",
+        title: "स्थिरता विकास हुँदै",
+        body: "यस चरणमा ध्यान कम भट्किन्छ। सासमा ध्यान राख्दा मन स्वाभाविक रूपमा त्यहीं रहन थाल्छ।",
       },
       {
-        title: "Relaxing the Effort",
-        body: "An important shift happens now: you begin to relax the effort you use to stay focused. In earlier stages you needed to actively bring attention back again and again. Now the mind stays more easily, so you can soften your grip. Holding too tightly actually creates tension. The practice becomes gentler — like balancing a feather on your palm rather than gripping a rope. Let attention rest lightly.",
+        title: "प्रयास नरम बनाउँदै",
+        body: "अब ध्यान राख्न अत्यधिक प्रयास आवश्यक पर्दैन। धेरै कसिलो प्रयासले तनाव ल्याउँछ। ध्यानलाई हल्का रूपमा विश्राम गर्न दिनुहोस्।",
       },
       {
-        title: "Steady and Relaxed",
-        body: "The ideal at this stage is attention that is both steady and relaxed. Not tight, not loose. Not forcing, not drifting. You are learning to find a middle ground where awareness is clear and present but the body and mind remain comfortable. This balance is the heart of shamatha practice. When you find it, meditation begins to feel more natural and even enjoyable.",
+        title: "स्थिर र सहज",
+        body: "यस चरणमा ध्यान स्थिर र सहज दुबै हुन्छ। न त धेरै कसिलो न त धेरै ढिलो। यही सन्तुलन शमथ अभ्यासको केन्द्र हो।",
       },
     ],
+
     guidedMeditation: [
-      "Settle into your posture. Let your body be relaxed but upright. Take a few deep breaths and release tension.",
-      "Place your attention on the breath gently. Let it rest there like a leaf settling on water.",
-      "Notice that attention stays more easily now. You don't need to chase it or force it back constantly.",
-      "If a distraction arises, let it pass naturally. Don't engage with it — simply allow it to fade.",
-      "Pay attention to the quality of your effort. If you notice tension or strain, soften. Let your focus be light and steady.",
-      "Rest in this balance: present but relaxed, attentive but gentle.",
-      "Continue for the remainder of the session, allowing attention to settle deeper with each breath.",
+      "आरामदायी रूपमा बस्नुहोस् र शरीरलाई शान्त राख्नुहोस्।",
+      "सासमा हल्का रूपमा ध्यान राख्नुहोस्।",
+      "ध्यान स्वाभाविक रूपमा स्थिर रहन दिनुहोस्।",
+      "विचलन आएमा त्यसलाई आफैं हराउन दिनुहोस्।",
+      "यदि तनाव महसुस भयो भने ध्यानलाई नरम बनाउनुहोस्।",
+      "स्पष्ट र सहज ध्यानमा विश्राम गर्नुहोस्।",
+      "सत्रभरि यस स्थिर ध्यानलाई गहिरो हुन दिनुहोस्।",
     ],
+
     defaultDuration: 12,
   },
+
   {
     id: 5,
-    title: "Taming the Mind",
-    subtitle: "Discovering clarity and calm",
+    title: "मनलाई वशमा पार्दै",
+    subtitle: "स्पष्टता र शान्ति अनुभव गर्दै",
     icon: "Sparkles",
     level: "intermediate",
     explanation:
-      "The practitioner recognizes that meditation brings clarity and calmness. Attention becomes more controlled and stable.",
+      "ध्यानले स्पष्टता र शान्ति ल्याउन थाल्छ। मन अझ स्थिर र नियन्त्रित हुन्छ।",
+
     learnScreens: [
       {
-        title: "Clarity Emerges",
-        body: "As your practice deepens, you begin to notice moments of genuine clarity. The mind feels bright and aware, not foggy or scattered. Thoughts may still arise, but they don't cloud your awareness. It is like the difference between looking through dirty glass and clean glass — the view is the same but everything appears sharper and more vivid. This clarity is a natural result of sustained practice.",
+        title: "स्पष्टता देखा पर्दै",
+        body: "अभ्यास गहिरो हुँदै जाँदा मन अझ स्पष्ट र उज्यालो अनुभव हुन्छ।",
       },
       {
-        title: "The Mind Becomes Calmer",
-        body: "Along with clarity comes a growing sense of calmness. The usual restlessness and agitation begin to settle. You may notice that you feel more peaceful during and after meditation. This calmness is not something you create through force — it arises naturally when the mind stops chasing after every thought and sensation. You are beginning to experience the fruits of your patience and practice.",
+        title: "मन शान्त हुँदै",
+        body: "मनको चञ्चलता घट्दै जान्छ र शान्ति अनुभव हुन थाल्छ।",
       },
       {
-        title: "Appreciating the Benefits",
-        body: "At this stage it's natural to appreciate how meditation is changing your experience. You feel clearer, calmer and more grounded. However, the teachings advise not to become attached to these pleasant states. They are signs of progress but they will come and go. The practice is to continue sitting with steady, balanced awareness regardless of whether the experience feels special or ordinary.",
+        title: "लाभलाई बुझ्दै",
+        body: "ध्यानले ल्याउने परिवर्तनहरू अनुभव हुन सक्छन्, तर तिनमा आसक्त नहुनुहोस्। अभ्यास जारी राख्नुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Find your comfortable seat and settle in. Let the body relax deeply.",
-      "Breathe naturally. Place your attention on the breath with gentle, steady awareness.",
-      "As you sit, notice the quality of your mind. Is there a sense of clarity or brightness? Simply observe it.",
-      "Notice any calmness that is present. Don't try to create it or hold onto it — just recognize it.",
-      "If thoughts arise, let them pass without engaging. Your attention naturally returns to the breath.",
-      "Appreciate this growing stability without grasping at it. Simply continue sitting.",
-      "Rest in this clear, calm awareness for the remainder of the session.",
+      "आरामदायी रूपमा बस्नुहोस्। शरीरलाई पूर्ण रूपमा शान्त हुन दिनुहोस्।",
+      "सासमा स्थिर ध्यान राख्नुहोस्।",
+      "मनको स्पष्टता वा उज्यालोपन ध्यान दिनुहोस्।",
+      "शान्ति महसुस भए त्यसलाई केवल चिन्ह लगाउनुहोस्।",
+      "विचार आएमा त्यसलाई जान दिनुहोस्।",
+      "यस स्थिर ध्यानलाई निरन्तर राख्नुहोस्।",
+      "सत्रभरि स्पष्ट र शान्त ध्यानमा विश्राम गर्नुहोस्।",
     ],
+
     defaultDuration: 15,
   },
+
   {
     id: 6,
-    title: "Pacifying the Mind",
-    subtitle: "Balancing dullness and restlessness",
+    title: "मनलाई शान्त बनाउँदै",
+    subtitle: "अल्छीपन र चञ्चलताको सन्तुलन",
     icon: "Scale",
     level: "intermediate",
     explanation:
-      "Subtle distractions such as dullness or restlessness are recognized and balanced. The mind becomes more balanced and calm.",
+      "सामान्य विचलन घटेपछि सूक्ष्म अवरोधहरू देखापर्छन् — अल्छीपन र चञ्चलता।",
+
     learnScreens: [
       {
-        title: "Subtle Obstacles",
-        body: "At this stage, the obvious distractions have mostly settled. But subtler obstacles appear: dullness and restlessness. Dullness is when the mind becomes foggy, heavy, or sleepy during meditation. Restlessness is when a subtle undercurrent of agitation keeps the mind from fully settling. Both are normal experiences. Recognizing them is the first step to working with them skillfully.",
+        title: "सूक्ष्म अवरोधहरू",
+        body: "यस चरणमा अल्छीपन र चञ्चलता जस्ता सूक्ष्म अवस्थाहरू देखिन सक्छन्।",
       },
       {
-        title: "Working with Dullness",
-        body: "When dullness arises, the mind feels heavy and unclear. You might feel drowsy or notice your awareness becoming vague. The remedy is to gently brighten your attention — sit up a little straighter, take a slightly deeper breath, or sharpen your focus on the breath sensations. You are not fighting the dullness, just gently lifting the mind back to clarity. A light, fresh quality of attention is what you're looking for.",
+        title: "अल्छीपनसँग काम गर्दै",
+        body: "मन भारी वा अस्पष्ट भए ध्यानलाई अलि उज्यालो बनाउनुहोस्।",
       },
       {
-        title: "Working with Restlessness",
-        body: "Restlessness shows up as subtle agitation or the feeling that you can't quite settle. The mind may feel jumpy even when no specific thoughts are pulling you away. The remedy is to relax — soften your focus slightly, let your body settle more deeply, and release any tension. Sometimes lowering your gaze or taking a few slower breaths helps. The goal is to find the middle ground between too tight and too loose.",
+        title: "चञ्चलतासँग काम गर्दै",
+        body: "मन अशान्त भए शरीर र ध्यानलाई नरम बनाउनुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Settle into your posture. Take a few deep breaths and release any tension in the body.",
-      "Place attention on the breath gently and let the mind settle.",
-      "As you sit, begin to notice the quality of your attention. Is it clear or foggy? Steady or restless?",
-      "If you notice dullness — heaviness, sleepiness, vagueness — gently brighten your attention. Sit up slightly, sharpen your focus.",
-      "If you notice restlessness — agitation, jumpiness, subtle tension — soften your focus. Relax more deeply.",
-      "Find the balance: clear but relaxed, steady but gentle. This middle ground is the heart of this practice.",
-      "Continue adjusting gently throughout the session, always returning to balanced, clear awareness.",
+      "आरामदायी रूपमा बस्नुहोस्। शरीरलाई शान्त बनाउनुहोस्।",
+      "सासमा हल्का ध्यान राख्नुहोस्।",
+      "ध्यान स्पष्ट छ वा धुम्म छ भनेर अवलोकन गर्नुहोस्।",
+      "अल्छीपन भए ध्यानलाई उज्यालो बनाउनुहोस्।",
+      "चञ्चलता भए ध्यानलाई नरम बनाउनुहोस्।",
+      "स्पष्ट र सहज सन्तुलन खोज्नुहोस्।",
+      "सत्रभरि यस सन्तुलित ध्यानमा फर्किरहनुहोस्।",
     ],
+
     defaultDuration: 18,
   },
 
   // ─── ADVANCED ───────────────────────────────────────────
+
   {
     id: 7,
-    title: "Fully Pacified Mind",
-    subtitle: "Meditation becomes smooth and effortless",
+    title: "पूर्ण शान्त मन",
+    subtitle: "ध्यान सहज र स्थिर हुँदै",
     icon: "Mountain",
     level: "advanced",
     explanation:
-      "The mind becomes highly stable and disturbances are minimal. Meditation becomes smoother and requires less effort.",
+      "मन अत्यन्त स्थिर हुन्छ र विचलन न्यून हुन्छ। ध्यान सहज रूपमा चल्छ।",
+
     learnScreens: [
       {
-        title: "Deep Stability",
-        body: "By this stage your mind has become deeply stable. Distractions still arise occasionally but they have very little power. They appear briefly and dissolve on their own without pulling you away from the breath. You no longer need to actively fight or manage distractions. The mind has learned to settle naturally. Meditation feels smoother and more effortless than it did in earlier stages.",
+        title: "गहिरो स्थिरता",
+        body: "यस चरणमा ध्यान गहिरो रूपमा स्थिर हुन्छ।",
       },
       {
-        title: "Less Effort, More Presence",
-        body: "An important quality of this stage is that less effort is needed. In the beginning you had to work hard to stay with the breath. Now presence happens more naturally. The mind knows how to rest. You can ease up on effort without losing your focus. This is a sign of genuine progress — the skills you have been building are becoming part of how your mind naturally functions.",
+        title: "कम प्रयास",
+        body: "अब ध्यान राख्न धेरै प्रयास आवश्यक पर्दैन।",
       },
       {
-        title: "Trusting the Process",
-        body: "At this stage, trust your practice. You have put in the time and effort to reach this point. Don't complicate things by adding new techniques or striving for special experiences. Simply continue sitting with the same gentle awareness you have been cultivating all along. The mind will continue to deepen on its own. Your job is to show up and let the process unfold naturally.",
+        title: "अभ्यासमा भरोसा",
+        body: "आफ्नो अभ्यासमा विश्वास राख्नुहोस् र सहज रूपमा जारी राख्नुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Settle into your seat with a sense of ease. Your body knows this posture well by now.",
-      "Let breathing be completely natural. Place attention on the breath very lightly.",
-      "Notice how the mind settles more quickly and easily. Allow this natural stability.",
-      "If any distraction arises, it will likely dissolve on its own. No need to actively manage it.",
-      "Let your effort be minimal. Just enough awareness to remain present, no more.",
-      "Rest in this smooth, stable attention. Let it deepen naturally without pushing.",
-      "Continue for the remainder of the session, trusting the mind to stay settled.",
+      "आरामदायी रूपमा बस्नुहोस्।",
+      "सासलाई स्वाभाविक हुन दिनुहोस्।",
+      "ध्यानलाई हल्का रूपमा राख्नुहोस्।",
+      "विचलन आएमा आफैं हराउन दिनुहोस्।",
+      "प्रयास न्यून राख्नुहोस्।",
+      "स्थिर ध्यानमा विश्राम गर्नुहोस्।",
+      "सत्रभरि यस ध्यानलाई गहिरो हुन दिनुहोस्।",
     ],
+
     defaultDuration: 22,
   },
+
   {
     id: 8,
-    title: "Single-Pointed Attention",
-    subtitle: "The mind becomes clear and unified",
+    title: "एकबिन्दु ध्यान",
+    subtitle: "मन स्पष्ट र एकीकृत हुँदै",
     icon: "Eye",
     level: "advanced",
     explanation:
-      "Attention remains steadily on the object without significant distraction. The mind becomes clear and unified.",
+      "ध्यान स्थिर रूपमा एक बिन्दुमा रहन्छ र मन अत्यन्त स्पष्ट हुन्छ।",
+
     learnScreens: [
       {
-        title: "Unwavering Focus",
-        body: "At this stage your attention can remain on the breath for extended periods without significant distraction. The mind feels unified — all of your awareness is gathered in one place rather than scattered across different thoughts and sensations. This single-pointed quality brings a remarkable sense of clarity and stillness. The mind is fully present, fully engaged, and fully at rest all at the same time.",
+        title: "अडिग ध्यान",
+        body: "यस चरणमा ध्यान लामो समयसम्म स्थिर रहन सक्छ।",
       },
       {
-        title: "Clarity and Stillness Together",
-        body: "Single-pointed attention brings together two qualities that might seem opposite: clarity and stillness. The mind is very still, yet it is also very clear and bright. There is no dullness in the stillness and no agitation in the clarity. These two qualities support each other naturally. This is the hallmark of well-developed shamatha — a mind that is both perfectly calm and perfectly aware.",
+        title: "स्पष्टता र स्थिरता",
+        body: "मन स्थिर र स्पष्ट दुबै हुन्छ।",
       },
       {
-        title: "Continuing with Humility",
-        body: "Even at this advanced stage, the practice remains simple: sit, breathe, be present. Don't let achievement create pride or complacency. The mind can always deepen further. Continue with the same humble, patient attitude you brought to your very first session. The greatest practitioners are those who never stop being beginners at heart. Let each session be fresh and open.",
+        title: "नम्रता कायम राख्दै",
+        body: "उन्नत चरणमा पनि नम्रता र धैर्य कायम राख्नुहोस्।",
       },
     ],
+
     guidedMeditation: [
-      "Take your seat with quiet confidence. Let the body settle completely.",
-      "Let breathing be natural and effortless. There is nothing to control.",
-      "Place attention on the breath and let it rest there steadily. No need to adjust or manage.",
-      "Notice the unity of your awareness — everything gathered gently on this one point.",
-      "The mind is still and clear. Rest in this natural single-pointedness.",
-      "If any subtle movement arises, let it settle on its own. Don't intervene.",
-      "Continue resting in this unified, clear awareness for the entire session.",
+      "शान्त रूपमा बस्नुहोस्।",
+      "सासलाई स्वाभाविक रहन दिनुहोस्।",
+      "ध्यानलाई स्थिर राख्नुहोस्।",
+      "सचेतनाको एकता अनुभव गर्नुहोस्।",
+      "स्थिर र स्पष्ट ध्यानमा विश्राम गर्नुहोस्।",
+      "सूक्ष्म विचलन भए आफैं हराउन दिनुहोस्।",
+      "सत्रभरि यस एकीकृत ध्यानमा बस्नुहोस्।",
     ],
+
     defaultDuration: 25,
   },
+
   {
     id: 9,
-    title: "Effortless Stability",
-    subtitle: "Awareness rests in its own nature",
+    title: "सहज स्थिरता",
+    subtitle: "सचेतना आफ्नै स्वभावमा विश्राम",
     icon: "Sun",
     level: "advanced",
     explanation:
-      "Meditation becomes natural and effortless. Awareness remains stable and relaxed without continuous effort.",
+      "ध्यान पूर्ण रूपमा सहज हुन्छ र सचेतना स्थिर रूपमा विश्राम गर्छ।",
+
     learnScreens: [
       {
-        title: "Beyond Effort",
-        body: "This is the culmination of shamatha practice. Meditation requires no effort at all. You sit down and awareness is simply present — stable, clear, and relaxed. There is no need to place attention anywhere or bring it back from anywhere. The mind naturally rests in its own stillness. All the training you have done has brought you to the point where the mind knows how to be at peace without being told.",
+        title: "प्रयासभन्दा पर",
+        body: "यस चरणमा ध्यान सहज रूपमा उपस्थित हुन्छ।",
       },
       {
-        title: "Natural Awareness",
-        body: "Effortless stability means awareness is simply present on its own. You are not doing meditation — meditation is happening naturally. Thoughts may arise but they don't create any disturbance. They are like ripples on the surface of a deep, still lake. The depths remain undisturbed. This natural quality of awareness has always been present. Your practice has simply cleared away the habits that were hiding it.",
+        title: "स्वाभाविक सचेतना",
+        body: "सचेतना आफैं उपस्थित हुन्छ।",
       },
       {
-        title: "Resting in Stillness",
-        body: "At this stage there is nothing more to achieve in shamatha practice. The mind has found its natural resting place. Continue to sit regularly, not because you need to improve, but because this natural stillness is worth returning to again and again. Let each session be a simple resting in what is already present. There is nothing to add and nothing to remove. Just awareness, resting in its own nature.",
+        title: "शान्तिमा विश्राम",
+        body: "मन आफ्नो स्वाभाविक शान्तिमा विश्राम गर्छ।",
       },
     ],
+
     guidedMeditation: [
-      "Sit down and let everything settle. There is nothing you need to do.",
-      "Let breathing happen on its own. Let attention rest wherever it naturally falls.",
-      "Don't meditate. Don't try to focus. Don't try to achieve anything.",
-      "Simply let awareness be present. It knows how to rest. Trust it.",
-      "Thoughts may come and go. They require no response. Let everything be as it is.",
-      "Rest in this effortless, natural stability. No effort, no technique, no goal.",
-      "Continue resting for the entire session. Simply being, moment by moment, breath by breath.",
+      "बस्नुहोस् र शरीरलाई शान्त हुन दिनुहोस्।",
+      "सासलाई स्वाभाविक हुन दिनुहोस्।",
+      "ध्यान गर्न प्रयास नगर्नुहोस्।",
+      "केवल सचेतनालाई उपस्थित हुन दिनुहोस्।",
+      "विचार आएमा त्यसलाई जान दिनुहोस्।",
+      "सहज स्थिरतामा विश्राम गर्नुहोस्।",
+      "सत्रभरि केवल उपस्थित रहनुहोस्।",
     ],
+
     defaultDuration: 30,
   },
 ];
