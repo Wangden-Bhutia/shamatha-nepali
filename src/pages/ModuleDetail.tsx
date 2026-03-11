@@ -1,0 +1,344 @@
+import { useParams, useNavigate } from "react-router-dom";
+import { modules } from "@/data/modules";
+import { useProgress } from "@/hooks/useProgress";
+import { useMeditationTimer } from "@/hooks/useMeditationTimer";
+import { useGuidedAudio } from "@/hooks/useGuidedAudio";
+import TimerDisplay from "@/components/TimerDisplay";
+import TimerControls from "@/components/TimerControls";
+import SessionComplete from "@/components/SessionComplete";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+
+type Tab = "learn" | "meditate" | "timer";
+
+export default function ModuleDetail() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const module = modules.find((m) => m.id === Number(id));
+  const { getModuleProgress, completeSession, totalSessions } = useProgress();
+  const [activeTab, setActiveTab] = useState<Tab>("learn");
+  const [learnPage, setLearnPage] = useState(0);
+  const [guidedEnabled, setGuidedEnabled] = useState(true);
+  const [showCompletion, setShowCompletion] = useState(false);
+  const [showExitDialog, setShowExitDialog] = useState(false);
+  const timer = useMeditationTimer(module?.defaultDuration ?? 10);
+  const guidedAudio = useGuidedAudio(module?.level ?? "beginner");
+  const completedRef = useRef(false);
+  const prevElapsedRef = useRef(-1);
+
+  const isSessionActive = timer.isRunning || timer.isPaused;
+
+  // Trigger guided audio ticks
+  useEffect(() => {
+    if (timer.isRunning && !timer.isPaused && timer.elapsedSeconds !== prevElapsedRef.current) {
+      prevElapsedRef.current = timer.elapsedSeconds;
+      guidedAudio.tick(timer.elapsedSeconds, timer.totalSeconds);
+    }
+  }, [timer.elapsedSeconds, timer.isRunning, timer.isPaused, guidedAudio]);
+
+  // Handle session completion
+  useEffect(() => {
+    if (timer.isComplete && !completedRef.current && module) {
+      completedRef.current = true;
+      completeSession(module.id, timer.duration);
+      guidedAudio.tick(timer.totalSeconds, timer.totalSeconds);
+      guidedAudio.stopSession();
+      timer.stop();
+
+      // Subtle vibration
+      if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100]);
+      }
+
+      setShowCompletion(true);
+    }
+    if (!timer.isComplete) {
+      completedRef.current = false;
+    }
+  }, [timer.isComplete]);
+
+  // Prevent back navigation during session
+  useEffect(() => {
+    if (!isSessionActive) return;
+
+    const handlePopState = (e: PopStateEvent) => {
+      e.preventDefault();
+      window.history.pushState(null, "", window.location.href);
+      setShowExitDialog(true);
+    };
+
+    window.history.pushState(null, "", window.location.href);
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [isSessionActive]);
+
+  const handleStart = () => {
+    guidedAudio.initSession(timer.duration * 60, guidedEnabled);
+    prevElapsedRef.current = -1;
+    timer.start();
+  };
+
+  const handlePause = () => {
+    guidedAudio.pauseAudio();
+    timer.pause();
+  };
+
+  const handleResume = () => {
+    guidedAudio.resumeAudio();
+    timer.resume();
+  };
+
+  const handleStop = () => {
+    guidedAudio.stopSession();
+    timer.stop();
+  };
+
+  const handleExitConfirm = () => {
+    setShowExitDialog(false);
+    handleStop();
+    navigate("/");
+  };
+
+  const handleBack = useCallback(() => {
+    if (isSessionActive) {
+      setShowExitDialog(true);
+    } else {
+      navigate("/");
+    }
+  }, [isSessionActive, navigate]);
+
+  if (!module) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Module not found.</p>
+      </div>
+    );
+  }
+
+  // Completion screen
+  if (showCompletion) {
+    return (
+      <SessionComplete
+        durationMinutes={timer.duration}
+        totalSessions={totalSessions}
+        onReturn={() => setShowCompletion(false)}
+      />
+    );
+  }
+
+  const progress = getModuleProgress(module.id);
+  const screens = module.learnScreens;
+  const totalScreens = screens ? screens.length : 0;
+
+  const tabs: { key: Tab; label: string }[] = [
+    { key: "learn", label: "Learn" },
+    { key: "meditate", label: "Meditate" },
+    { key: "timer", label: "Timer" },
+  ];
+
+  // Minimal meditation mode — hide header/tabs when session active
+  const inMeditationMode = isSessionActive && activeTab === "timer";
+
+  return (
+    <div className={`min-h-screen bg-background ${inMeditationMode ? "flex flex-col" : ""}`}>
+      {/* Header — hidden during meditation */}
+      {!inMeditationMode && (
+        <div className="sticky top-0 z-20 bg-background/80 backdrop-blur-md border-b border-border">
+          <div className="max-w-lg mx-auto flex items-center gap-3 px-4 py-3">
+            <button
+              onClick={handleBack}
+              className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 text-foreground" />
+            </button>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs text-muted-foreground font-body tracking-wider uppercase">
+                Stage {module.id}
+              </p>
+              <h1 className="font-display text-lg font-semibold text-foreground truncate">
+                {module.title}
+              </h1>
+            </div>
+          </div>
+
+          {/* Tabs */}
+          <div className="max-w-lg mx-auto flex border-b border-border">
+            {tabs.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`flex-1 py-3 text-sm font-body tracking-wider uppercase transition-colors relative ${
+                  activeTab === tab.key
+                    ? "text-gold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {tab.label}
+                {activeTab === tab.key && (
+                  <div className="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-gold rounded-full" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Content */}
+      <div className={`max-w-lg mx-auto px-4 ${inMeditationMode ? "flex-1 flex flex-col items-center justify-center" : "py-8"}`}>
+        {activeTab === "learn" && (
+          <div className="animate-fade-up space-y-6">
+            {screens && totalScreens > 0 ? (
+              <>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  {screens.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setLearnPage(i)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        i === learnPage ? "bg-gold" : "bg-border"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="rounded-xl bg-card border border-border p-6 min-h-[220px]">
+                  <h2 className="font-display text-xl text-gold mb-4">
+                    {screens[learnPage].title}
+                  </h2>
+                  <p className="font-body text-foreground/90 leading-relaxed text-[15px]">
+                    {screens[learnPage].body}
+                  </p>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setLearnPage((p) => Math.max(0, p - 1))}
+                    disabled={learnPage === 0}
+                    className="rounded-full border-border"
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-1" />
+                    Back
+                  </Button>
+                  <span className="text-xs text-muted-foreground font-body">
+                    {learnPage + 1} of {totalScreens}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setLearnPage((p) => Math.min(totalScreens - 1, p + 1))}
+                    disabled={learnPage === totalScreens - 1}
+                    className="rounded-full border-border"
+                  >
+                    Next
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <p className="font-body text-foreground/90 leading-relaxed text-[15px]">
+                {module.explanation}
+              </p>
+            )}
+
+            {progress.sessionsCompleted > 0 && (
+              <div className="rounded-lg bg-secondary/50 border border-border p-4">
+                <p className="text-sm text-muted-foreground font-body">
+                  You've practiced this {progress.sessionsCompleted} time{progress.sessionsCompleted !== 1 ? "s" : ""} for a total of {progress.totalMinutesMeditated} minutes.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "meditate" && (
+          <div className="animate-fade-up space-y-6">
+            <h2 className="font-display text-xl text-gold text-center mb-8">
+              Guided Meditation
+            </h2>
+            <ol className="space-y-5">
+              {module.guidedMeditation.map((step, i) => (
+                <li key={i} className="flex gap-4">
+                  <span className="flex-shrink-0 w-7 h-7 rounded-full bg-secondary border border-border flex items-center justify-center text-xs text-gold font-body">
+                    {i + 1}
+                  </span>
+                  <p className="font-body text-foreground/85 leading-relaxed text-[15px] pt-0.5">
+                    {step}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {activeTab === "timer" && (
+          <div className={`animate-fade-up ${inMeditationMode ? "space-y-12" : "space-y-8"}`}>
+            <TimerDisplay
+              secondsRemaining={timer.secondsRemaining}
+              progress={timer.progress}
+              isRunning={timer.isRunning}
+            />
+
+            <TimerControls
+              isRunning={timer.isRunning}
+              isPaused={timer.isPaused}
+              duration={timer.duration}
+              guidedEnabled={guidedEnabled}
+              onSetDuration={timer.setDuration}
+              onStart={handleStart}
+              onPause={handlePause}
+              onResume={handleResume}
+              onStop={handleStop}
+              onToggleGuided={setGuidedEnabled}
+            />
+
+            {/* Recommended duration hint — only when idle */}
+            {!timer.isRunning && !timer.isPaused && (
+              <p className="text-center text-xs text-muted-foreground font-body">
+                Recommended for Stage {module.id}: {module.defaultDuration} min
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Exit confirmation dialog */}
+      <Dialog open={showExitDialog} onOpenChange={setShowExitDialog}>
+        <DialogContent className="max-w-xs rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="font-display text-lg text-center">
+              End meditation session?
+            </DialogTitle>
+            <DialogDescription className="text-center text-sm text-muted-foreground">
+              Your current session will not be saved.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-2 pt-2">
+            <Button
+              onClick={() => setShowExitDialog(false)}
+              className="rounded-full bg-gold text-primary-foreground hover:bg-gold-soft font-body tracking-wider uppercase text-sm"
+            >
+              Continue Meditation
+            </Button>
+            <Button
+              onClick={handleExitConfirm}
+              variant="outline"
+              className="rounded-full border-border font-body tracking-wider uppercase text-sm"
+            >
+              End Session
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

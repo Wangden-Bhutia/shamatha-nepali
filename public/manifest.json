@@ -1,0 +1,40 @@
+{
+  "name": "Shamatha – Meditation Training",
+  "short_name": "Shamatha",
+  "description": "Guided Shamatha meditation training based on the nine stages of attention. Step-by-step lessons from breath awareness to stable, effortless awareness.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#144C8B",
+  "theme_color": "#C9A24A",
+  "lang": "en-US",
+  "dir": "ltr",
+  "id": "com.shamatha.meditation",
+  "categories": ["education", "lifestyle", "health"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "prefer_related_applications": false,
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
+}
