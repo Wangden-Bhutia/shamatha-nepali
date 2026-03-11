@@ -18,13 +18,12 @@ import {
 
 type Tab = "learn" | "meditate" | "timer";
 
-/* Bell audio (reusable) */
-const bellAudio = new Audio("/sounds/bell.mp3");
-bellAudio.volume = 0.9;
+const bell = new Audio("/sounds/bell.mp3");
+bell.volume = 0.9;
 
 const playBell = () => {
-  bellAudio.currentTime = 0;
-  bellAudio.play().catch(() => {});
+  bell.currentTime = 0;
+  bell.play().catch(() => {});
 };
 
 export default function ModuleDetail() {
@@ -46,7 +45,6 @@ export default function ModuleDetail() {
 
   const isSessionActive = timer.isRunning || timer.isPaused;
 
-  /* Handle completion */
   useEffect(() => {
 
     if (timer.isComplete && !completedRef.current && module) {
@@ -73,7 +71,6 @@ export default function ModuleDetail() {
 
   }, [timer.isComplete, module, timer.duration, completeSession]);
 
-  /* Prevent leaving during meditation */
   useEffect(() => {
 
     if (!isSessionActive) return;
@@ -85,14 +82,12 @@ export default function ModuleDetail() {
     };
 
     window.history.pushState(null, "", window.location.href);
-
     window.addEventListener("popstate", handlePopState);
 
     return () => window.removeEventListener("popstate", handlePopState);
 
   }, [isSessionActive]);
 
-  /* Start meditation */
   const handleStart = async () => {
 
     playBell();
@@ -110,9 +105,7 @@ export default function ModuleDetail() {
   const handleExitConfirm = () => {
 
     setShowExitDialog(false);
-
     handleStop();
-
     navigate("/");
 
   };
@@ -220,9 +213,79 @@ export default function ModuleDetail() {
 
       <div className={`max-w-lg mx-auto px-4 ${inMeditationMode ? "flex-1 flex flex-col items-center justify-center" : "py-8"}`}>
 
+        {activeTab === "learn" && (
+          <div className="space-y-6">
+
+            {screens && totalScreens > 0 && (
+              <>
+                <div className="rounded-xl bg-card border border-border p-6">
+
+                  <h2 className="font-display text-xl text-gold mb-4">
+                    {screens[learnPage].title}
+                  </h2>
+
+                  <p className="font-body text-foreground/90 leading-relaxed text-[15px]">
+                    {screens[learnPage].body}
+                  </p>
+
+                </div>
+
+                <div className="flex justify-between">
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setLearnPage((p) => Math.max(0, p - 1))}
+                    disabled={learnPage === 0}
+                  >
+                    <ChevronLeft className="w-4 h-4 mr-1" />
+                    पछाडि
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() =>
+                      setLearnPage((p) => Math.min(totalScreens - 1, p + 1))
+                    }
+                    disabled={learnPage === totalScreens - 1}
+                  >
+                    अगाडि
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </Button>
+
+                </div>
+              </>
+            )}
+
+          </div>
+        )}
+
+        {activeTab === "meditate" && (
+
+          <ol className="space-y-5">
+
+            {module.guidedMeditation.map((step, i) => (
+              <li key={i} className="flex gap-4">
+
+                <span className="flex-shrink-0 w-7 h-7 rounded-full bg-secondary border border-border flex items-center justify-center text-xs text-gold">
+                  {i + 1}
+                </span>
+
+                <p className="font-body text-foreground/85 leading-relaxed text-[15px]">
+                  {step}
+                </p>
+
+              </li>
+            ))}
+
+          </ol>
+
+        )}
+
         {activeTab === "timer" && (
 
-          <div className={`animate-fade-up ${inMeditationMode ? "space-y-12" : "space-y-8"}`}>
+          <div className="space-y-8">
 
             <TimerDisplay
               secondsRemaining={timer.secondsRemaining}
@@ -240,12 +303,6 @@ export default function ModuleDetail() {
               onResume={handleResume}
               onStop={handleStop}
             />
-
-            {!timer.isRunning && !timer.isPaused && (
-              <p className="text-center text-xs text-muted-foreground font-body">
-                चरण {module.id} को लागि सुझाव गरिएको समय: {module.defaultDuration} मिनेट
-              </p>
-            )}
 
           </div>
 
@@ -273,7 +330,7 @@ export default function ModuleDetail() {
 
             <Button
               onClick={() => setShowExitDialog(false)}
-              className="rounded-full bg-gold text-primary-foreground hover:bg-gold-soft font-body tracking-wider uppercase text-sm"
+              className="rounded-full bg-gold text-primary-foreground"
             >
               ध्यान जारी राख्नुहोस्
             </Button>
@@ -281,7 +338,7 @@ export default function ModuleDetail() {
             <Button
               onClick={handleExitConfirm}
               variant="outline"
-              className="rounded-full border-border font-body tracking-wider uppercase text-sm"
+              className="rounded-full border-border"
             >
               सत्र समाप्त गर्नुहोस्
             </Button>
