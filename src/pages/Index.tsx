@@ -16,10 +16,6 @@ import MeditationQuotes from "@/components/MeditationQuotes";
 import heroImage from "@/assets/hero-meditation.jpg";
 import meditationPathImage from "@/assets/meditation-path.jpeg";
 
-/**
- * Reusable Collapsible Wrapper
- * Uses CSS Grid for smooth height transitions (0fr -> 1fr)
- */
 const CollapsibleCard = ({
   title,
   children,
@@ -33,7 +29,6 @@ const CollapsibleCard = ({
 }) => {
   const [open, setOpen] = useState(defaultOpen);
 
-  // Sync state if defaultOpen changes (e.g., after data loads)
   useEffect(() => {
     setOpen(defaultOpen);
   }, [defaultOpen]);
@@ -64,10 +59,6 @@ const CollapsibleCard = ({
   );
 };
 
-/**
- * Stage Section Wrapper
- * Specifically for the Nine Stages grouping
- */
 const CollapsibleStageSection = ({
   label,
   description,
@@ -121,16 +112,15 @@ const CollapsibleStageSection = ({
 export default function Index() {
   const navigate = useNavigate();
   const stagesRef = useRef<HTMLDivElement>(null);
-  
-  const { 
-    getModuleProgress, 
-    totalSessions, 
-    totalMinutes, 
-    dailyStreak, 
-    recommendedStage 
+
+  const {
+    getModuleProgress,
+    totalSessions,
+    totalMinutes,
+    dailyStreak,
+    recommendedStage,
   } = useProgress();
 
-  // Helper to find the level category for the user's recommended stage
   const recommendedLevelKey = useMemo(() => {
     if (!recommendedStage) return null;
     const mod = modules.find((m) => m.id === recommendedStage);
@@ -143,96 +133,96 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background pb-12">
-      {/* Hero Section */}
+
+      {/* Hero */}
       <header className="relative h-72 overflow-hidden">
         <img
           src={heroImage}
-          alt="Serene mountain landscape"
+          alt="शान्त पर्वतीय दृश्य"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background" />
         <div className="relative z-10 flex flex-col items-center justify-end h-full pb-8 px-6 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-semibold text-foreground animate-fade-up">
-            Shamatha
+            शमथ
           </h1>
           <p className="text-muted-foreground font-body text-sm mt-2 tracking-wider uppercase animate-fade-up-delay">
-            The Nine Stages of Calm Abiding
+            शान्त ध्यानका नौ चरण
           </p>
         </div>
       </header>
 
       <main className="max-w-lg mx-auto px-4 space-y-4 pt-8">
-        {/* Introduction */}
-        <CollapsibleCard 
-          title="The Nine Stages" 
-          defaultOpen={totalSessions === 0}
-        >
+
+        <CollapsibleCard title="नौ चरणहरू" defaultOpen={totalSessions === 0}>
           <p className="font-body text-foreground/85 leading-relaxed text-[15px]">
-            Shamatha cultivates calm abiding through nine progressive stages. Each stage refines attention and awareness. Progress unfolds naturally with consistent effort; the stages are guideposts, not rigid milestones.
+            शमथ ध्यानले मनलाई क्रमशः स्थिर र शान्त बनाउने अभ्यास हो। यस अभ्यासमा ध्यान
+            नौ चरणहरू मार्फत बिस्तारै परिष्कृत हुन्छ। प्रत्येक चरणले सचेतना र एकाग्रतालाई
+            अझ स्पष्ट बनाउँछ। नियमित अभ्याससँगै प्रगति स्वाभाविक रूपमा खुल्दै जान्छ।
           </p>
         </CollapsibleCard>
 
-        {/* The Meditation Path Visual */}
-        <CollapsibleCard title="The Meditation Path">
+        <CollapsibleCard title="ध्यानको मार्ग">
           <img
             src={meditationPathImage}
-            alt="Traditional Shamatha Thangka"
+            alt="शमथ ध्यानको पारम्परिक चित्र"
             className="w-full rounded-lg shadow-sm"
           />
-<h4 className="font-medium text-foreground/90 mt-6 mb-3">
-    Understanding the Symbolism
-  </h4>
 
-  <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
-    This traditional illustration represents the training of the mind in Shamatha meditation.
-  </p>
+          <h4 className="font-medium text-foreground/90 mt-6 mb-3">
+            प्रतीकहरूको अर्थ
+          </h4>
 
-  <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
-    The elephant symbolizes the mind, while the monkey represents distraction and restless thinking. 
-    At the beginning the monkey leads the elephant, showing how attention is easily carried away by thoughts.
-  </p>
+          <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
+            यो पारम्परिक चित्रले शमथ ध्यानमा मनलाई कसरी प्रशिक्षण गरिन्छ भन्ने कुरा देखाउँछ।
+          </p>
 
-  <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
-    The monk represents the practitioner, who guides the mind using mindfulness (the rope) 
-    and alertness (the hook).
-  </p>
+          <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
+            हात्तीले मनलाई जनाउँछ भने बाँदरले विचलन र चञ्चल सोचलाई जनाउँछ।
+            सुरुमा बाँदरले हात्तीलाई अगाडि लैजान्छ, जसले ध्यान कसरी सजिलै
+            विचारहरूद्वारा तानिन्छ भन्ने देखाउँछ।
+          </p>
 
-  <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
-    The flames along the path symbolize effort. In the early stages strong effort is needed 
-    to bring the mind back again and again. As concentration develops, less effort is required.
-  </p>
+          <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
+            भिक्षुले साधकलाई जनाउँछ। उसले सचेतना (डोरी) र सतर्कता (काँटी) प्रयोग गरेर
+            मनलाई मार्गदर्शन गर्छ।
+          </p>
 
-  <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
-    As the elephant gradually becomes white, it represents the mind becoming clearer, calmer, 
-    and more stable. By the final stage the mind rests effortlessly in balanced attention.
-  </p>
+          <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
+            मार्गमा देखिने ज्वालाहरूले प्रयासलाई जनाउँछ। प्रारम्भिक चरणहरूमा मनलाई
+            बारम्बार फिर्ता ल्याउन बलियो प्रयास आवश्यक हुन्छ। ध्यान गहिरो हुँदै जाँदा
+            प्रयास कम हुँदै जान्छ।
+          </p>
 
-  <p className="text-muted-foreground italic text-[15px] mt-2">
-    Tap the stages below to explore the nine stages of Shamatha training.
-  </p>
+          <p className="font-body text-foreground/80 leading-relaxed text-[15px] mb-5">
+            हात्ती बिस्तारै सेतो हुँदै जाँदा मन अझ स्पष्ट, शान्त र स्थिर हुँदै गएको
+            संकेत गर्छ। अन्तिम चरणमा मन सहज रूपमा सन्तुलित ध्यानमा विश्राम गर्छ।
+          </p>
 
+          <p className="text-muted-foreground italic text-[15px] mt-2">
+            तलका चरणहरूमा थिचेर शमथ ध्यानका नौ चरणहरू अन्वेषण गर्नुहोस्।
+          </p>
         </CollapsibleCard>
 
-        {/* Self Assessment */}
-        <CollapsibleCard title="Where Am I on the Path?">
+        <CollapsibleCard title="म अहिले कुन चरणमा छु?">
           <div className="flex items-center gap-4 mb-3">
             <div className="flex-shrink-0 w-11 h-11 rounded-full bg-secondary flex items-center justify-center border border-border">
               <Compass className="w-5 h-5 text-gold" />
             </div>
             <p className="text-sm text-muted-foreground font-body">
-              Identify your current stage of practice with a brief questionnaire.
+              छोटो प्रश्नावलीमार्फत आफ्नो ध्यान अभ्यासको वर्तमान चरण पहिचान गर्नुहोस्।
             </p>
           </div>
+
           <button
             onClick={() => navigate("/assessment")}
             className="w-full rounded-lg border border-border bg-secondary hover:bg-accent/50 transition-colors p-3 text-center font-display text-sm text-foreground"
           >
-            Take the Assessment
+            मूल्यांकन सुरु गर्नुहोस्
           </button>
         </CollapsibleCard>
 
-        {/* Your Practice Stats */}
-        <CollapsibleCard title="Your Practice" defaultOpen>
+        <CollapsibleCard title="तपाईंको अभ्यास" defaultOpen>
           <PracticeTracker
             totalMinutes={totalMinutes}
             totalSessions={totalSessions}
@@ -240,31 +230,28 @@ export default function Index() {
           />
         </CollapsibleCard>
 
-        {/* Current Focus (Conditional) */}
         {recommendedStage && (
           <div className="animate-fade-in">
             <CurrentFocus recommendedStage={recommendedStage} />
           </div>
         )}
 
-        {/* Navigation Helper */}
         <div className="flex justify-center py-4">
           <button
             onClick={scrollToStages}
             className="flex items-center gap-2 text-gold/70 hover:text-gold font-body text-sm transition-colors"
           >
             <ArrowDown className="w-3.5 h-3.5" />
-            Jump to stages
+            चरणहरूमा जानुहोस्
           </button>
         </div>
 
-        {/* Stages List */}
         <div ref={stagesRef} className="space-y-12 pt-6">
           {levels.map((level) => {
             const levelModules = modules.filter((m) => m.level === level.key);
-            // Default to beginner if no recommendation, otherwise open the recommended level
-            const shouldBeOpen = recommendedLevelKey 
-              ? level.key === recommendedLevelKey 
+
+            const shouldBeOpen = recommendedLevelKey
+              ? level.key === recommendedLevelKey
               : level.key === "beginner";
 
             return (
@@ -287,7 +274,6 @@ export default function Index() {
           })}
         </div>
 
-        {/* Secondary Links */}
         <div className="space-y-6 pt-8">
           <button
             onClick={() => navigate("/experiences")}
@@ -296,28 +282,30 @@ export default function Index() {
             <span className="text-2xl text-gold">◈</span>
             <div>
               <p className="font-display text-base font-semibold text-foreground">
-                What Happens in Meditation
+                ध्यानमा के हुन्छ
               </p>
               <p className="text-xs text-muted-foreground font-body mt-0.5">
-                Understanding nyam — restlessness, bliss, clarity & more
+                न्याम अनुभवहरू बुझ्नुहोस् — चञ्चलता, आनन्द, स्पष्टता आदि
               </p>
             </div>
           </button>
 
           <MeditationQuotes />
 
-          {/* Footer Info */}
           <footer className="px-2 pb-6 text-xs text-muted-foreground leading-relaxed">
-            <p className="font-display text-gold text-sm mb-1 uppercase tracking-tighter">About</p>
+            <p className="font-display text-gold text-sm mb-1 uppercase tracking-tighter">
+              जानकारी
+            </p>
             <p>
-              A quiet guide to Shamatha meditation based on the traditional nine stages of
-              attention. Created as a simple tool for personal practice and study.
+              शमथ ध्यानका पारम्परिक नौ चरणहरूमा आधारित एक सरल मार्गदर्शक।
+              व्यक्तिगत अभ्यास र अध्ययनका लागि तयार गरिएको।
             </p>
             <p className="text-[11px] text-right mt-4 cormorant opacity-80">
-              Created with care by Wangden Bhutia
+              प्रेमपूर्वक तयार गरिएको — Wangden Bhutia
             </p>
           </footer>
         </div>
+
       </main>
     </div>
   );
