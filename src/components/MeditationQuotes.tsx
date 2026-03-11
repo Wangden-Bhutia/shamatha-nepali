@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+        import { useState, useEffect } from "react";
 
 const quotes = [
-  { text: "Rest in natural great peace, this exhausted mind.", author: "Nyoshul Khen Rinpoche" },
-  { text: "Do not pursue the past. Do not usher in the future. Rest evenly with present awareness.", author: "Milarepa" },
-  { text: "The nature of mind is like the sky — naturally clear and pure.", author: "Dilgo Khyentse Rinpoche" },
-  { text: "Where would I possibly find enough leather to cover the surface of the earth? But wearing leather on the soles of my feet is equivalent to covering the earth with it.", author: "Shantideva" },
-  { text: "In the gap between thoughts, the luminous nature of mind shines.", author: "Milarepa" },
-  { text: "Let the mind rest in its natural state, free of any contrivance.", author: "Dilgo Khyentse Rinpoche" },
-  { text: "Don't prolong the past, don't invite the future, don't alter your innate wakefulness.", author: "Nyoshul Khen Rinpoche" },
-  { text: "Since everything is but an apparition, having nothing to do with good or bad, acceptance or rejection, one may well burst out in laughter.", author: "Milarepa" },
+  { text: "यो थकित मनलाई यसको स्वाभाविक महान शान्तिमा विश्राम गर्न दिनुहोस्।", author: "Nyoshul Khen Rinpoche" },
+  { text: "अतीतको पछि नलाग्नुहोस्। भविष्यलाई बोलाउनुहोस् पनि होइन। वर्तमान सचेतनामा समान रूपमा विश्राम गर्नुहोस्।", author: "Milarepa" },
+  { text: "मनको स्वभाव आकाशजस्तै हो — स्वाभाविक रूपमा स्पष्ट र शुद्ध।", author: "Dilgo Khyentse Rinpoche" },
+  { text: "संसारको सम्पूर्ण सतह छोप्न पर्याप्त छाला म कहाँ पाउँछु? तर खुट्टाको तलुवामा छाला लगाउनु भनेको सम्पूर्ण पृथ्वीलाई छोप्नु जस्तै हो।", author: "Shantideva" },
+  { text: "विचारहरूको बीचको खाली ठाउँमा मनको उज्यालो स्वभाव प्रकट हुन्छ।", author: "Milarepa" },
+  { text: "मनलाई कुनै कृत्रिम प्रयास बिना यसको स्वाभाविक अवस्थामा विश्राम गर्न दिनुहोस्।", author: "Dilgo Khyentse Rinpoche" },
+  { text: "अतीतलाई लम्ब्याउनु हुँदैन, भविष्यलाई बोलाउनु हुँदैन, आफ्नो स्वाभाविक जागरूकतालाई परिवर्तन नगर्नुहोस्।", author: "Nyoshul Khen Rinpoche" },
+  { text: "सबै कुरा केवल प्रकट भएको दृश्य मात्र भएकोले, राम्रो वा नराम्रोसँग सम्बन्धित नभएकोले, मानिस सहजै हाँस्न सक्छ।", author: "Milarepa" },
 ];
 
 export default function MeditationQuotes() {
@@ -38,7 +38,6 @@ export default function MeditationQuotes() {
           "{quote.text}"
         </p>
         <p className="text-xs text-muted-foreground mt-2 font-body">— {quote.author}</p>
-            
       </div>
     </div>
   );
