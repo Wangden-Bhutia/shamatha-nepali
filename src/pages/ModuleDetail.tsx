@@ -19,13 +19,16 @@ import {
 type Tab = "learn" | "meditate" | "timer";
 
 const bell = new Audio("/sounds/bell.mp3");
+
+bell.preload = "auto";
 bell.volume = 0.9;
 
 const playBell = () => {
-  bell.currentTime = 0;
-  bell.play().catch(() => {});
+  try {
+    bell.currentTime = 0;
+    bell.play();
+  } catch {}
 };
-
 export default function ModuleDetail() {
 
   const { id } = useParams<{ id: string }>();
@@ -88,16 +91,15 @@ export default function ModuleDetail() {
 
   }, [isSessionActive]);
 
-  const handleStart = async () => {
+  const handleStart = () => {
 
-    playBell();
+  playBell(); // bell immediately
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
+  setTimeout(() => {
     timer.start();
+  }, 3000); // 3 second settling
 
-  };
-
+};
   const handlePause = () => timer.pause();
   const handleResume = () => timer.resume();
   const handleStop = () => timer.stop();
