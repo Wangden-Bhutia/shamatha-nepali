@@ -15,9 +15,11 @@ const SelfAssessmentPage = () => {
           className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-body text-sm mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back
+          फर्कनुहोस्
         </button>
+
         <SelfAssessment onStageRecommended={setRecommendedStage} />
+
       </div>
     </div>
   );
