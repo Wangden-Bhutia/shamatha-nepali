@@ -35,26 +35,32 @@ export default function ModuleCard({ module, progress }: ModuleCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-body text-muted-foreground tracking-wider uppercase">
-              Stage {module.id}
+              चरण {module.id}
             </span>
+
             {progress.completed && (
               <span className="flex items-center gap-1 text-xs text-gold">
                 <Check className="w-3 h-3" />
-                Practiced
+                अभ्यास सम्पन्न
               </span>
             )}
+
           </div>
+
           <h3 className="font-display text-lg font-semibold text-foreground leading-tight mb-1">
             {module.title}
           </h3>
+
           <p className="text-sm text-muted-foreground font-body">
             {module.subtitle}
           </p>
+
           {progress.sessionsCompleted > 0 && (
             <p className="text-xs text-muted-foreground mt-2 font-body">
-              {progress.sessionsCompleted} session{progress.sessionsCompleted !== 1 ? "s" : ""} · {progress.totalMinutesMeditated} min total
+              {progress.sessionsCompleted} अभ्यास · {progress.totalMinutesMeditated} मिनेट कुल
             </p>
           )}
+
         </div>
       </div>
     </button>
