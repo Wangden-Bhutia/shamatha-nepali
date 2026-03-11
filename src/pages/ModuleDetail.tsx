@@ -45,7 +45,7 @@ export default function ModuleDetail() {
   const timer = useMeditationTimer(module?.defaultDuration ?? 10);
 
   const completedRef = useRef(false);
-
+ const warningBellRef = useRef(false);
   const isSessionActive = timer.isRunning || timer.isPaused;
 
   useEffect(() => {
@@ -73,7 +73,19 @@ export default function ModuleDetail() {
     }
 
   }, [timer.isComplete, module, timer.duration, completeSession]);
+ useEffect(() => {
 
+  if (!timer.isRunning) {
+    warningBellRef.current = false;
+    return;
+  }
+
+  if (timer.secondsRemaining === 5 && !warningBellRef.current) {
+    warningBellRef.current = true;
+    playBell();
+  }
+
+}, [timer.secondsRemaining, timer.isRunning]);
   useEffect(() => {
 
     if (!isSessionActive) return;
