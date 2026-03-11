@@ -9,39 +9,39 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "How often does your attention wander during meditation?",
+    question: "ध्यान गर्दा तपाईंको ध्यान कति पटक भट्किन्छ?",
     options: [
-      { label: "Constantly — I can barely stay with one breath", score: 1 },
-      { label: "Often — I drift every few breaths", score: 3 },
-      { label: "Sometimes — I notice gaps but mostly stay present", score: 5 },
-      { label: "Rarely — my attention feels naturally steady", score: 8 },
+      { label: "लगातार — एक साससम्म पनि ध्यान राख्न गाह्रो हुन्छ", score: 1 },
+      { label: "धेरैजसो — केही सासपछि ध्यान भट्किन्छ", score: 3 },
+      { label: "कहिलेकाहीँ — केही अन्तराल हुन्छ तर प्रायः उपस्थित हुन्छु", score: 5 },
+      { label: "दुर्लभ रूपमा — ध्यान स्वाभाविक रूपमा स्थिर हुन्छ", score: 8 },
     ],
   },
   {
-    question: "How quickly do you notice when you've been distracted?",
+    question: "ध्यान भट्किएको थाहा पाउन तपाईंलाई कति समय लाग्छ?",
     options: [
-      { label: "It takes a while — I get lost in thought chains", score: 1 },
-      { label: "Moderate — I notice after a few moments", score: 3 },
-      { label: "Fairly quickly — I catch myself almost right away", score: 6 },
-      { label: "Almost instantly — distraction barely takes hold", score: 8 },
+      { label: "धेरै समय — विचारहरूको श्रृंखलामा हराउँछु", score: 1 },
+      { label: "मध्यम — केही क्षणपछि थाहा हुन्छ", score: 3 },
+      { label: "छिटो — लगभग तुरुन्तै थाहा हुन्छ", score: 6 },
+      { label: "लगभग तुरुन्त — विचलनले खासै प्रभाव पार्दैन", score: 8 },
     ],
   },
   {
-    question: "How stable does your attention feel overall?",
+    question: "समग्र रूपमा तपाईंको ध्यान कति स्थिर अनुभव हुन्छ?",
     options: [
-      { label: "Unsteady — like trying to hold water in my hands", score: 1 },
-      { label: "Variable — some moments are stable, many are not", score: 3 },
-      { label: "Mostly stable — with occasional subtle wavering", score: 6 },
-      { label: "Very stable — attention rests easily on the breath", score: 8 },
+      { label: "अस्थिर — हातमा पानी समातेजस्तै", score: 1 },
+      { label: "परिवर्तनशील — कहिले स्थिर, कहिले होइन", score: 3 },
+      { label: "प्रायः स्थिर — कहिलेकाहीँ हल्का डगमगाहट", score: 6 },
+      { label: "धेरै स्थिर — सासमा सहज रूपमा विश्राम गर्छ", score: 8 },
     ],
   },
   {
-    question: "How much effort does it take to stay with the breath?",
+    question: "सासमा ध्यान राख्न कति प्रयास गर्नुपर्छ?",
     options: [
-      { label: "A lot — I have to keep pulling my mind back", score: 1 },
-      { label: "Moderate — it takes steady but manageable effort", score: 3 },
-      { label: "Light — only gentle reminders are needed", score: 6 },
-      { label: "Almost none — presence feels natural and effortless", score: 9 },
+      { label: "धेरै — बारम्बार मन फर्काउनुपर्छ", score: 1 },
+      { label: "मध्यम — स्थिर तर सम्भव प्रयास चाहिन्छ", score: 3 },
+      { label: "हल्का — केवल हल्का सम्झना पर्याप्त हुन्छ", score: 6 },
+      { label: "लगभग छैन — उपस्थिती स्वाभाविक र सहज हुन्छ", score: 9 },
     ],
   },
 ];
@@ -94,10 +94,11 @@ const SelfAssessment = ({ onStageRecommended }: SelfAssessmentProps) => {
   return (
     <div className="rounded-xl bg-card border border-border p-6">
       <h2 className="font-display text-lg text-gold mb-1">
-        Where Am I on the Path?
+        म अहिले कुन चरणमा छु?
       </h2>
+
       <p className="font-body text-foreground/70 text-[13px] mb-5 leading-relaxed">
-        Answer these questions based on your recent meditation experience.
+        हालैको ध्यान अनुभवलाई आधार बनाएर यी प्रश्नहरूको उत्तर दिनुहोस्।
       </p>
 
       {!showResult ? (
@@ -107,9 +108,11 @@ const SelfAssessment = ({ onStageRecommended }: SelfAssessmentProps) => {
               <p className="font-body text-[14px] text-foreground/90 mb-2.5 leading-snug">
                 {qIdx + 1}. {q.question}
               </p>
+
               <div className="space-y-1.5">
                 {q.options.map((opt) => {
                   const isSelected = answers[qIdx] === opt.score;
+
                   return (
                     <button
                       key={opt.score}
@@ -139,28 +142,33 @@ const SelfAssessment = ({ onStageRecommended }: SelfAssessmentProps) => {
                 : "bg-muted text-muted-foreground cursor-not-allowed"
             }`}
           >
-            See My Suggested Stage
+            मेरो सुझाइएको चरण हेर्नुहोस्
           </button>
         </div>
       ) : (
         <div className="space-y-4">
           <div className="rounded-lg bg-background/50 border border-border p-5 text-center">
             <p className="text-xs text-muted-foreground font-body uppercase tracking-wider mb-2">
-              Suggested starting point
+              सुझाव गरिएको प्रारम्भिक चरण
             </p>
+
             <p className="font-display text-3xl text-gold mb-1">
-              Stage {stageNum}
+              चरण {stageNum}
             </p>
+
             <p className="font-display text-base text-foreground">
               {stage?.title}
             </p>
+
             <p className="font-body text-[13px] text-foreground/70 mt-1">
               {stage?.subtitle}
             </p>
           </div>
 
           <p className="font-body text-[13px] text-foreground/60 leading-relaxed text-center italic">
-            Remember — the stages are not rigid. Your experience may shift between stages from session to session. Use this as a gentle guide, not a fixed label.
+            याद राख्नुहोस् — यी चरणहरू कठोर रूपमा निश्चित छैनन्।
+            तपाईंको अनुभव सत्रदेखि सत्रसम्म फरक हुन सक्छ।
+            यसलाई केवल एक सौम्य मार्गदर्शनका रूपमा प्रयोग गर्नुहोस्।
           </p>
 
           <div className="flex gap-3">
@@ -168,13 +176,14 @@ const SelfAssessment = ({ onStageRecommended }: SelfAssessmentProps) => {
               onClick={handleReset}
               className="flex-1 py-2.5 rounded-lg border border-border font-body text-sm text-foreground/70 hover:bg-accent/50 transition-colors"
             >
-              Retake
+              पुनः प्रयास गर्नुहोस्
             </button>
+
             <button
               onClick={() => navigate(`/module/${stageNum}`)}
               className="flex-1 py-2.5 rounded-lg bg-primary text-primary-foreground font-body text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              Go to Stage {stageNum}
+              चरण {stageNum} खोल्नुहोस्
             </button>
           </div>
         </div>
